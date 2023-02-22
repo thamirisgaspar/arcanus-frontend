@@ -22,4 +22,12 @@ export class ArcanusService {
   setArcanus(data: any) : Observable<any> {
     return this.http.post(`${this.apiUrl}/setArcanus`, data);
   }
+
+  getSkills(id: number) : Observable<any> {
+    return this.http.post(`${this.apiUrl}/getSkills`, {arcanusId: id});
+  }
+
+  setSkills(data: any) : Observable<any> {
+    return this.http.post(`${this.apiUrl}/setSkills`, data);
+  }
 }

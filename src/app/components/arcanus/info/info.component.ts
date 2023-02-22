@@ -21,6 +21,8 @@ export class InfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isLoading = true;
+
     this.infoForm = this.formBuilder.group({
       player: [localStorage.getItem('name')],
       char: ['', Validators.required],
@@ -40,7 +42,6 @@ export class InfoComponent implements OnInit {
     });
 
     this.arcanusService.getArcanus(Number(localStorage.getItem('userid'))).subscribe((res) => {
-      console.log(res)
       if (res.status == true) {
         localStorage.setItem('id', res.result.id); 
         this.infoForm.controls.char.setValue(res.result.char);
@@ -59,6 +60,8 @@ export class InfoComponent implements OnInit {
         this.infoForm.controls.reasoning.setValue(res.result.reasoning);
       }
     });
+
+    this.isLoading = false;
   }
 
   clearMsg() {
