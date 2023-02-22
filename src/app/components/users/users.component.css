@@ -1,0 +1,21 @@
+.nav-item{
+    padding: 10px;
+}
+  
+.nav-link.active{
+    color: #FFF;
+    background: #710c04;
+}
+  
+.nav-link{
+    color: #FFF;
+    font-size: 18px;
+    padding:10px 15px;
+    background-color: #000;
+}
+  
+.nav-link:hover{
+    color: #FFF;
+    background: #710c04;
+}
+  

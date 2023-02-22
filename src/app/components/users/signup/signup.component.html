@@ -1,1 +1,64 @@
-<p>signup works!</p>
+<div class="container text-center">
+    <div *ngIf="isLoading"><app-spinner></app-spinner></div>
+
+    <form class="form-group" [formGroup]="signupForm" (ngSubmit)="signupSubmit()" *ngIf="!isLoading">
+        <div *ngIf="msgShow" class="alert alert-{{alertType}}" role="alert">
+            {{msg}}
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="clearMsg()"></button>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="containerinput">
+                    <input type="text" class="form-control input req" formControlName="name" placeholder="Nome" required>
+                    <p class="required">*</p>
+                    <span class="spanInvalid" *ngIf="signupForm.controls.name.errors?.required && signupForm.controls.name.touched">Campo obrigatório</span>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="containerinput">
+                    <input type="email" class="form-control input req" formControlName="username" placeholder="Email" required>
+                    <p class="required">*</p>
+                    <span class="spanInvalid" *ngIf="signupForm.controls.username.errors?.required && signupForm.controls.username.touched">Campo obrigatório</span>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="containerinput">
+                    <input type="password" class="form-control input req" formControlName="password" placeholder="Senha" required>
+                    <p class="required">*</p>
+                    <div *ngIf="signupForm.controls.password.invalid && signupForm.controls.password.touched || signupForm.controls.password.dirty">
+                        <span class="spanInvalid" *ngIf="signupForm.controls.password.errors?.required">Campo obrigatório<br></span>
+                        <span class="spanInvalid" *ngIf="signupForm.controls.password.errors?.minlength">Deve ter pelo menos 6 caracteres<br></span>
+                        <span class="spanInvalid" *ngIf="signupForm.controls.password.errors?.maxlength">Não pode exceder 12 caracteres<br></span>
+                        <span class="spanInvalid" *ngIf="signupForm.controls.password.errors?.hasNumber">Deve conter pelo menos 1 número<br></span>
+                        <span class="spanInvalid" *ngIf="signupForm.controls.password.errors?.hasCapitalCase">Deve conter pelo menos 1 letra maiúscula<br></span>
+                        <span class="spanInvalid" *ngIf="signupForm.controls.password.errors?.hasSmallCase">Deve conter pelo menos 1 letra minúscula<br></span>
+                        <span class="spanInvalid" *ngIf="signupForm.controls.password.errors?.hasSpecialCharacters">Deve conter pelo menos 1 caracter especial<br></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="containerinput">
+                    <input type="password" class="form-control input req" formControlName="passwordC" placeholder="Confirmação de Senha" required>
+                    <p class="required">*</p>
+                    <div *ngIf="signupForm.controls.passwordC.invalid && signupForm.controls.passwordC.touched || signupForm.controls.passwordC.dirty">
+                        <span class="spanInvalid" *ngIf="signupForm.controls.passwordC.errors?.required">Campo obrigatório</span>
+                        <span class="spanInvalid" *ngIf="signupForm.controls.passwordC.errors?.minlength">Deve ter pelo menos 6 caracteres</span>
+                        <span class="spanInvalid" *ngIf="signupForm.controls.passwordC.errors?.maxlength">Não pode exceder 12 caracteres</span>
+                        <span class="spanInvalid" *ngIf="signupForm.controls.passwordC.errors?.mustMatch">As senhas não são identicas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 text-center">
+            <button [disabled]="!signupForm.valid" class="btn-default" type="submit">Sign Up</button>
+        </div>
+    </form>
+</div>
+
+<router-outlet></router-outlet>

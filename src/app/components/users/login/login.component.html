@@ -1,1 +1,47 @@
-<p>login works!</p>
+<div class="container text-center">
+    <div *ngIf="isLoading"><app-spinner></app-spinner></div>
+
+    <form class="form-group" [formGroup]="loginForm" (ngSubmit)="loginSubmit()" *ngIf="!isLoading">
+        <div *ngIf="msgShow" class="alert alert-{{alertType}}" role="alert">
+            {{msg}}
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="clearMsg()"></button>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-xs-12 form-mb">
+                <div class="containerinput">
+                    <input type="email" class="form-control input" formControlName="username" placeholder="Email Address" required>
+                    <p class="required">*</p>
+                    <span class="spanInvalid" *ngIf="loginForm.controls.username.errors?.required && loginForm.controls.username.touched">Campo obrigatório</span>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-xs-12 form-mb">
+                <div class="containerinput">
+                    <input type="password" class="form-control input" formControlName="password" placeholder="Password" required>
+                    <p class="required">*</p>
+                    <div *ngIf="loginForm.controls.password.invalid && loginForm.controls.password.touched || loginForm.controls.password.dirty">
+                        <span class="spanInvalid" *ngIf="loginForm.controls.password.errors?.required">Campo obrigatório</span>
+                        <span class="spanInvalid" *ngIf="loginForm.controls.password.errors?.minlength">Senha deve ter pelo menos 6 caracteres</span>
+                        <span class="spanInvalid" *ngIf="loginForm.controls.password.errors?.maxlength">Senha não pode exceder 12 caracteres</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-xs-12 form-mb">
+                <div class="row">
+                    <div class="col-lg-6 col-xs-12 pr-xs form-mb text-center">
+                        <a [routerLink]="['/forgotPassword']" class="page-link-sm">Esqueceu a senha?</a>
+                    </div>
+        
+                    <div class="col-lg-6 col-xs-12 pr-xs form-mb">
+                        <input [disabled]="!loginForm.valid" type="submit" class="btn-default" value="Log In">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<router-outlet></router-outlet>

@@ -8,6 +8,7 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ShareModule } from '../share/share.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ShareModule
   ],
   exports: [
     UsersComponent,
