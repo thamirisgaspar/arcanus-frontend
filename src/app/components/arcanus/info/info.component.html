@@ -1,1 +1,242 @@
-<p>info works!</p>
+<div class="container">
+    <div class="divider">
+        <span class="outer-line"></span>
+        <span class="nameDivider">⛧⛧⛧⛧⛧</span>
+        <span class="outer-line"></span>
+    </div>
+
+    <div *ngIf="isLoading"><app-spinner></app-spinner></div>
+
+    <form class="form-group" [formGroup]="infoForm" (ngSubmit)="infoSubmit()" *ngIf="!isLoading">
+        <div *ngIf="msgShow" class="alert alert-{{alertType}} alert-dismissible" role="alert">
+            {{msg}}
+      
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="clearMsg()"></button>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="containerinput">
+                    <input type="text" class="form-control input" formControlName="char" placeholder="Personagem" required>
+                    <p class="required">*</p>
+                    <span class="spanInvalid" *ngIf="infoForm.controls.char.errors?.required && infoForm.controls.char.touched">Campo obrigatório</span>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <div class="containerinput">
+                    <input type="text" class="form-control input" formControlName="player" placeholder="Jogador" required readonly style="background-color: darkgrey;">
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <div class="containerinput">
+                    <input type="text" class="form-control input" formControlName="class" placeholder="Classe" required>
+                    <p class="required">*</p>
+                    <span class="spanInvalid" *ngIf="infoForm.controls.class.errors?.required && infoForm.controls.class.touched">Campo obrigatório</span>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <div class="containerinput">
+                    <input type="text" class="form-control input" formControlName="chronicle" placeholder="Crônica" required>
+                    <p class="required">*</p>
+                    <span class="spanInvalid" *ngIf="infoForm.controls.chronicle.errors?.required && infoForm.controls.chronicle.touched">Campo obrigatório</span>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-12" style="display: block; margin: 0 auto;">
+                <div class="containerinput">
+                    <input type="number" class="form-control input" formControlName="xp" placeholder="XP" required>
+                    <p class="required">*</p>
+                    <span class="spanInvalid" *ngIf="infoForm.controls.xp.errors?.required && infoForm.controls.xp.touched">Campo obrigatório</span>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="containerinput">
+                    <textarea class="form-control input" formControlName="background" placeholder="background"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider">
+            <span class="outer-line"></span>
+            <span class="nameDivider">ATRIBUTOS</span>
+            <span class="outer-line"></span>
+        </div>
+      
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <h6>FÍSICOS</h6>
+        
+                <div class="streight">
+                    Força
+        
+                    <div class="rating">
+                        <input type="radio" class="form-control" formControlName="streight" value="5.00" id="streight5">
+                        <label for="streight5">☆</label>
+                        <input type="radio" class="form-control" formControlName="streight" value="4.00" id="streight4">
+                        <label for="streight4">☆</label>
+                        <input type="radio" class="form-control" formControlName="streight" value="3.00" id="streight3">
+                        <label for="streight3">☆</label>
+                        <input type="radio" class="form-control" formControlName="streight" value="2.00" id="streight2">
+                        <label for="streight2">☆</label>
+                        <input type="radio" class="form-control" formControlName="streight" value="1.00" id="streight1">
+                        <label for="streight1">☆</label>
+                    </div>
+                </div>
+        
+                <div class="dexterity">
+                    Destreza
+        
+                    <div class="rating">
+                        <input type="radio" class="form-control" formControlName="dexterity" value="5.00" id="dexterity5">
+                        <label for="dexterity5">☆</label>
+                        <input type="radio" class="form-control" formControlName="dexterity" value="4.00" id="dexterity4">
+                        <label for="dexterity4">☆</label>
+                        <input type="radio" class="form-control" formControlName="dexterity" value="3.00" id="dexterity3">
+                        <label for="dexterity3">☆</label>
+                        <input type="radio" class="form-control" formControlName="dexterity" value="2.00" id="dexterity2">
+                        <label for="dexterity2">☆</label>
+                        <input type="radio" class="form-control" formControlName="dexterity" value="1.00" id="dexterity1">
+                        <label for="dexterity1">☆</label>
+                    </div>
+                </div>
+        
+                <div class="life">
+                    Vigor
+        
+                    <div class="rating">
+                        <input type="radio" class="form-control" formControlName="life" value="5.00" id="life5">
+                        <label for="life5">☆</label>
+                        <input type="radio" class="form-control" formControlName="life" value="4.00" id="life4">
+                        <label for="life4">☆</label>
+                        <input type="radio" class="form-control" formControlName="life" value="3.00" id="life3">
+                        <label for="life3">☆</label>
+                        <input type="radio" class="form-control" formControlName="life" value="2.00" id="life2">
+                        <label for="life2">☆</label>
+                        <input type="radio" class="form-control" formControlName="life" value="1.00" id="life1">
+                        <label for="life1">☆</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-12">
+                <h6>SOCIAIS</h6>
+
+                <div class="charisma">
+                    Carisma
+
+                    <div class="rating">
+                        <input type="radio" formControlName="charisma" value="5.00" id="charisma5">
+                        <label for="charisma5">☆</label>
+                        <input type="radio" formControlName="charisma" value="4.00" id="charisma4">
+                        <label for="charisma4">☆</label>
+                        <input type="radio" formControlName="charisma" value="3.00" id="charisma3">
+                        <label for="charisma3">☆</label>
+                        <input type="radio" formControlName="charisma" value="2.00" id="charisma2">
+                        <label for="charisma2">☆</label>
+                        <input type="radio" formControlName="charisma" value="1.00" id="charisma1">
+                        <label for="charisma1">☆</label>
+                    </div>
+                </div>
+
+                <div class="manipulation">
+                    Manipulação
+
+                    <div class="rating">
+                        <input type="radio" formControlName="manipulation" value="5.00" id="manipulation5">
+                        <label for="manipulation5">☆</label>
+                        <input type="radio" formControlName="manipulation" value="4.00" id="manipulation4">
+                        <label for="manipulation4">☆</label>
+                        <input type="radio" formControlName="manipulation" value="3.00" id="manipulation3">
+                        <label for="manipulation3">☆</label>
+                        <input type="radio" formControlName="manipulation" value="2.00" id="manipulation2">
+                        <label for="manipulation2">☆</label>
+                        <input type="radio" formControlName="manipulation" value="1.00" id="manipulation1">
+                        <label for="manipulation1">☆</label>
+                    </div>
+                </div>
+
+                <div class="apearence">
+                    Aparência
+
+                    <div class="rating">
+                        <input type="radio" formControlName="apearence" value="5.00" id="apearence5">
+                        <label for="apearence5">☆</label>
+                        <input type="radio" formControlName="apearence" value="4.00" id="apearence4">
+                        <label for="apearence4">☆</label>
+                        <input type="radio" formControlName="apearence" value="3.00" id="apearence3">
+                        <label for="apearence3">☆</label>
+                        <input type="radio" formControlName="apearence" value="2.00" id="apearence2">
+                        <label for="apearence2">☆</label>
+                        <input type="radio" formControlName="apearence" value="1.00" id="apearence1">
+                        <label for="apearence1">☆</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-12">
+                <h6>MENTAIS</h6>
+
+                <div class="perception">
+                    Percepção
+
+                    <div class="rating">
+                        <input type="radio" formControlName="perception" value="5.00" id="perception5">
+                        <label for="perception5">☆</label>
+                        <input type="radio" formControlName="perception" value="4.00" id="perception4">
+                        <label for="perception4">☆</label>
+                        <input type="radio" formControlName="perception" value="3.00" id="perception3">
+                        <label for="perception3">☆</label>
+                        <input type="radio" formControlName="perception" value="2.00" id="perception2">
+                        <label for="perception2">☆</label>
+                        <input type="radio" formControlName="perception" value="1.00" id="perception1">
+                        <label for="perception1">☆</label>
+                    </div>
+                </div>
+
+                <div class="intelligence">
+                    Inteligência
+
+                    <div class="rating">
+                        <input type="radio" formControlName="intelligence" value="5.00" id="intelligence5">
+                        <label for="intelligence5">☆</label>
+                        <input type="radio" formControlName="intelligence" value="4.00" id="intelligence4">
+                        <label for="intelligence4">☆</label>
+                        <input type="radio" formControlName="intelligence" value="3.00" id="intelligence3">
+                        <label for="intelligence3">☆</label>
+                        <input type="radio" formControlName="intelligence" value="2.00" id="intelligence2">
+                        <label for="intelligence2">☆</label>
+                        <input type="radio" formControlName="intelligence" value="1.00" id="intelligence1">
+                        <label for="intelligence1">☆</label>
+                    </div>
+                </div>
+
+                <div class="reasoning">
+                    Raciocínio
+
+                    <div class="rating">
+                        <input type="radio" formControlName="reasoning" value="5.00" id="reasoning5">
+                        <label for="reasoning5">☆</label>
+                        <input type="radio" formControlName="reasoning" value="4.00" id="reasoning4">
+                        <label for="reasoning4">☆</label>
+                        <input type="radio" formControlName="reasoning" value="3.00" id="reasoning3">
+                        <label for="reasoning3">☆</label>
+                        <input type="radio" formControlName="reasoning" value="2.00" id="reasoning2">
+                        <label for="reasoning2">☆</label>
+                        <input type="radio" formControlName="reasoning" value="1.00" id="reasoning1">
+                        <label for="reasoning1">☆</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr style="opacity: 0;">
+
+        <div class="col-12 text-end">
+            <button class="btn-save" type="submit">Salvar Atributos</button>
+        </div>
+    </form>
+</div>

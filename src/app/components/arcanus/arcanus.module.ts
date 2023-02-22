@@ -10,6 +10,7 @@ import { MagicaesComponent } from './magicaes/magicaes.component';
 import { OthersComponent } from './others/others.component';
 import { GrimoireComponent } from './grimoire/grimoire.component';
 import { NotesComponent } from './notes/notes.component';
+import { ShareModule } from '../share/share.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NotesComponent } from './notes/notes.component';
     CommonModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ShareModule
   ],
   exports: [
     ArcanusComponent,

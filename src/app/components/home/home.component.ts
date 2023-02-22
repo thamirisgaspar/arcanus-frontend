@@ -53,13 +53,15 @@ export class HomeComponent implements OnInit {
     this.isLoading = true;
     this.clearMsg();
 
+    debugger;
+
     var data = {
       'userId': localStorage.getItem('userid'),
       'char': this.infoForm.controls.char.value,
       'class': this.infoForm.controls.class.value,
       'chronicle': this.infoForm.controls.chronicle.value,
       'xp': this.infoForm.controls.xp.value,
-      'background': this.infoForm.controls.backend.value
+      'background': this.infoForm.controls.background.value
     };
 
     this.arcanusService.setArcanus(data).subscribe((res) => {
