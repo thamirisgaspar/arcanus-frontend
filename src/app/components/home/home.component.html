@@ -1,1 +1,73 @@
-<p>home works!</p>
+<div class="container-fluid text-center">
+    <div class="row">
+        <app-logout></app-logout>
+    </div>
+
+    <div class="container">
+        <div class="divider">
+            <span class="outer-line"></span>
+            <span class="nameDivider">⛧⛧⛧⛧⛧</span>
+            <span class="outer-line"></span>
+        </div>
+
+        <div *ngIf="isLoading"><app-spinner></app-spinner></div>
+
+        <form class="form-group" [formGroup]="infoForm" (ngSubmit)="infoSubmit()" *ngIf="!isLoading">
+            <div *ngIf="msgShow" class="alert alert-{{alertType}}" role="alert">
+                {{msg}}
+    
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="clearMsg()"></button>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="containerinput">
+                            <input type="text" class="form-control input" formControlName="char" placeholder="Personagem" required>
+                        <p class="required">*</p>
+                        <span class="spanInvalid" *ngIf="infoForm.controls.char.errors?.required && infoForm.controls.char.touched">Campo obrigatório</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="containerinput">
+                        <input type="text" class="form-control input" formControlName="player" placeholder="Jogador" required readonly style="background-color: darkgrey;">
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="containerinput">
+                        <input type="text" class="form-control input" formControlName="class" placeholder="Classe" required>
+                        <p class="required">*</p>
+                        <span class="spanInvalid" *ngIf="infoForm.controls.class.errors?.required && infoForm.controls.class.touched">Campo obrigatório</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <div class="containerinput">
+                        <input type="text" class="form-control input" formControlName="chronicle" placeholder="Crônica" required>
+                        <p class="required">*</p>
+                        <span class="spanInvalid" *ngIf="infoForm.controls.chronicle.errors?.required && infoForm.controls.chronicle.touched">Campo obrigatório</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-12" style="display: block; margin: 0 auto;">
+                    <div class="containerinput">
+                        <input type="number" class="form-control input" formControlName="xp" placeholder="XP" required>
+                        <p class="required">*</p>
+                        <span class="spanInvalid" *ngIf="infoForm.controls.xp.errors?.required && infoForm.controls.xp.touched">Campo obrigatório</span>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="containerinput">
+                      <textarea class="form-control input" formControlName="background" placeholder="background"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 text-end">
+                <button [disabled]="!infoForm.valid" class="btn-save" type="submit">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>

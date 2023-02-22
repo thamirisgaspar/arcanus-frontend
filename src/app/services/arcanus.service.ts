@@ -10,4 +10,16 @@ export class ArcanusService {
   //apiUrl = 'https://arcanus-backend.herokuapp.com/api';
 
   constructor(private http: HttpClient) { }
+
+  validate(id: Number) : Observable<any> {
+    return this.http.post(`${this.apiUrl}/validate`, {userId: id});
+  }
+
+  getArcanus(id: Number) : Observable<any> {
+    return this.http.post(`${this.apiUrl}/getArcanus`, {userId: id});
+  }
+
+  setArcanus(data: any) : Observable<any> {
+    return this.http.post(`${this.apiUrl}/setArcanus`, data);
+  }
 }
