@@ -5,8 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class MailService {
-  apiUrl = 'http://localhost:3000/api';
-  //apiUrl = 'https://arcanus-backend.herokuapp.com/api';
+  //apiUrl = 'http://localhost:3000/api';
+  apiUrl = 'https://arcanus-backend.herokuapp.com/api';
 
   constructor(private http: HttpClient) { }
 

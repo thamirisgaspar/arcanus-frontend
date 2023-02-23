@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ArcanusService {
-  apiUrl = 'http://localhost:3000/api';
-  //apiUrl = 'https://arcanus-backend.herokuapp.com/api';
+  //apiUrl = 'http://localhost:3000/api';
+  apiUrl = 'https://arcanus-backend.herokuapp.com/api';
 
   constructor(private http: HttpClient) { }
 
@@ -49,5 +49,13 @@ export class ArcanusService {
 
   setGrimoire(data: any) : Observable<any> {
     return this.http.post(`${this.apiUrl}/setGrimoire`, data);
+  }
+
+  getNotes(id: number) : Observable<any> {
+    return this.http.post(`${this.apiUrl}/getNotes`, {arcanusId: id});
+  }
+
+  setNotes(data: any) : Observable<any> {
+    return this.http.post(`${this.apiUrl}/setNotes`, data);
   }
 }

@@ -6,8 +6,8 @@ import { Observable } from 'rxjs'
   providedIn: 'root'
 })
 export class UsersService {
-  apiUrl = 'http://localhost:3000/api';
-  //apiUrl = 'https://arcanus-backend.herokuapp.com/api';
+  //apiUrl = 'http://localhost:3000/api';
+  apiUrl = 'https://arcanus-backend.herokuapp.com/api';
 
   constructor(private http: HttpClient) { }
 

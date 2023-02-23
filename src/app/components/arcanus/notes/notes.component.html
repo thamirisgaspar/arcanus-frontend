@@ -1,1 +1,31 @@
-<p>notes works!</p>
+<div class="container text-center">
+    <div class="divider">
+        <span class="outer-line"></span>
+        <span class="formControlNameDivider">NOTAS</span>
+        <span class="outer-line"></span>
+    </div>
+
+    <div *ngIf="isLoading"><app-spinner></app-spinner></div>
+
+    <form class="form-group" [formGroup]="infoForm" (ngSubmit)="infoSubmit()" *ngIf="!isLoading">
+        <div *ngIf="msgShow" class="alert alert-{{alertType}} alert-dismissible" role="alert">
+            {{msg}}
+      
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="clearMsg()"></button>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="containerinput">
+                    <textarea class="form-control input" formControlName="notes" placeholder="notas"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <hr style="opacity: 0;">
+
+        <div class="col-12 text-end">
+            <button class="btn-save" type="submit">Salvar Notas</button>
+        </div>
+    </form>
+</div>
