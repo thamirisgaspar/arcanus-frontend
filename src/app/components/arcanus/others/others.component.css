@@ -1,0 +1,45 @@
+.ratingLife {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-content: center;
+}
+  
+.ratingLife>input {
+    display: none;
+}
+  
+.ratingLife>label {
+    position: relative;
+    width: 1em;
+    font-size: 25px;
+    font-weight: 300;
+    color: #000;
+    cursor: pointer;
+}
+  
+@media screen and (min-width: 350px) and (max-width: 450px) {
+    .ratingLife>label {
+      font-size: 40px !important;
+    }
+}
+
+  
+.ratingLife>label::before {
+    content: "\2665";
+    position: absolute;
+    opacity: 0;
+}
+  
+.ratingLife>label:hover:before,
+.ratingLife>label:hover~label:before {
+    opacity: 1 !important;
+}
+  
+.ratingLife>input:checked~label:before {
+    opacity: 1;
+}
+  
+.ratingLife:hover>input:checked~label:before {
+    opacity: 0.4;
+}

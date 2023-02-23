@@ -1,1 +1,218 @@
-<p>others works!</p>
+<div class="container text-center">
+    <div class="divider">
+        <span class="outer-line"></span>
+        <span class="formControlNameDivider">⛧⛧⛧⛧⛧</span>
+        <span class="outer-line"></span>
+    </div>
+
+    <div *ngIf="isLoading"><app-spinner></app-spinner></div>
+
+    <form class="form-group" [formGroup]="infoForm" (ngSubmit)="infoSubmit()" *ngIf="!isLoading">
+        <div *ngIf="msgShow" class="alert alert-{{alertType}} alert-dismissible" role="alert">
+            {{msg}}
+      
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="clearMsg()"></button>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 sanity">
+                <h6>SANIDADE</h6>
+
+                <div class="rating big">
+                    <input type="radio" formControlName="sanity" value="20.00" id="sanity20">
+                    <label for="sanity20">☆</label>
+                    <input type="radio" formControlName="sanity" value="19.00" id="sanity19">
+                    <label for="sanity19">☆</label>
+                    <input type="radio" formControlName="sanity" value="18.00" id="sanity18">
+                    <label for="sanity18">☆</label>
+                    <input type="radio" formControlName="sanity" value="17.00" id="sanity17">
+                    <label for="sanity17">☆</label>
+                    <input type="radio" formControlName="sanity" value="16.00" id="sanity16">
+                    <label for="sanity16">☆</label>
+                    <input type="radio" formControlName="sanity" value="15.00" id="sanity15">
+                    <label for="sanity15">☆</label>
+                    <input type="radio" formControlName="sanity" value="14.00" id="sanity14">
+                    <label for="sanity14">☆</label>
+                    <input type="radio" formControlName="sanity" value="13.00" id="sanity13">
+                    <label for="sanity13">☆</label>
+                    <input type="radio" formControlName="sanity" value="12.00" id="sanity12">
+                    <label for="sanity12">☆</label>
+                    <input type="radio" formControlName="sanity" value="11.00" id="sanity11">
+                    <label for="sanity11">☆</label>    
+                    <input type="radio" formControlName="sanity" value="10.00" id="sanity10">
+                    <label for="sanity10">☆</label>
+                    <input type="radio" formControlName="sanity" value="9.00" id="sanity9">
+                    <label for="sanity9">☆</label>
+                    <input type="radio" formControlName="sanity" value="8.00" id="sanity8">
+                    <label for="sanity8">☆</label>
+                    <input type="radio" formControlName="sanity" value="7.00" id="sanity7">
+                    <label for="sanity7">☆</label>
+                    <input type="radio" formControlName="sanity" value="6.00" id="sanity6">
+                    <label for="sanity6">☆</label>
+                    <input type="radio" formControlName="sanity" value="5.00" id="sanity5">
+                    <label for="sanity5">☆</label>
+                    <input type="radio" formControlName="sanity" value="4.00" id="sanity4">
+                    <label for="sanity4">☆</label>
+                    <input type="radio" formControlName="sanity" value="3.00" id="sanity3">
+                    <label for="sanity3">☆</label>
+                    <input type="radio" formControlName="sanity" value="2.00" id="sanity2">
+                    <label for="sanity2">☆</label>
+                    <input type="radio" formControlName="sanity" value="1.00" id="sanity1">
+                    <label for="sanity1">☆</label>            
+                </div>
+            </div>
+
+            <hr style="opacity: 0;">
+
+            <div class="col-md-12 col-sm-12 mana">
+                <h6>MANA</h6>
+
+                <div class="rating big">
+                    <input type="radio" formControlName="mana" value="20.00" id="mana20">
+                    <label for="mana20">☆</label>
+                    <input type="radio" formControlName="mana" value="19.00" id="mana19">
+                    <label for="mana19">☆</label>
+                    <input type="radio" formControlName="mana" value="18.00" id="mana18">
+                    <label for="mana18">☆</label>
+                    <input type="radio" formControlName="mana" value="17.00" id="mana17">
+                    <label for="mana17">☆</label>
+                    <input type="radio" formControlName="mana" value="16.00" id="mana16">
+                    <label for="mana16">☆</label>
+                    <input type="radio" formControlName="mana" value="15.00" id="mana15">
+                    <label for="mana15">☆</label>
+                    <input type="radio" formControlName="mana" value="14.00" id="mana14">
+                    <label for="mana14">☆</label>
+                    <input type="radio" formControlName="mana" value="13.00" id="mana13">
+                    <label for="mana13">☆</label>
+                    <input type="radio" formControlName="mana" value="12.00" id="mana12">
+                    <label for="mana12">☆</label>
+                    <input type="radio" formControlName="mana" value="11.00" id="mana11">
+                    <label for="mana11">☆</label>    
+                    <input type="radio" formControlName="mana" value="10.00" id="mana10">
+                    <label for="mana10">☆</label>
+                    <input type="radio" formControlName="mana" value="9.00" id="mana9">
+                    <label for="mana9">☆</label>
+                    <input type="radio" formControlName="mana" value="8.00" id="mana8">
+                    <label for="mana8">☆</label>
+                    <input type="radio" formControlName="mana" value="7.00" id="mana7">
+                    <label for="mana7">☆</label>
+                    <input type="radio" formControlName="mana" value="6.00" id="mana6">
+                    <label for="mana6">☆</label>
+                    <input type="radio" formControlName="mana" value="5.00" id="mana5">
+                    <label for="mana5">☆</label>
+                    <input type="radio" formControlName="mana" value="4.00" id="mana4">
+                    <label for="mana4">☆</label>
+                    <input type="radio" formControlName="mana" value="3.00" id="mana3">
+                    <label for="mana3">☆</label>
+                    <input type="radio" formControlName="mana" value="2.00" id="mana2">
+                    <label for="mana2">☆</label>
+                    <input type="radio" formControlName="mana" value="1.00" id="mana1">
+                    <label for="mana1">☆</label>            
+                </div>
+            </div>
+
+            <hr style="opacity: 0;">
+
+            <div class="col-md-12 col-sm-12 mana">
+                <h6>Pontos de Vida</h6>
+
+                <div class="ratingLife big">
+                    <input type="radio" formControlName="lifePoints" value="20.00" id="lifePoints20">
+                    <label for="lifePoints20">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="19.00" id="lifePoints19">
+                    <label for="lifePoints19">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="18.00" id="lifePoints18">
+                    <label for="lifePoints18">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="17.00" id="lifePoints17">
+                    <label for="lifePoints17">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="16.00" id="lifePoints16">
+                    <label for="lifePoints16">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="15.00" id="lifePoints15">
+                    <label for="lifePoints15">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="14.00" id="lifePoints14">
+                    <label for="lifePoints14">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="13.00" id="lifePoints13">
+                    <label for="lifePoints13">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="12.00" id="lifePoints12">
+                    <label for="lifePoints12">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="11.00" id="lifePoints11">
+                    <label for="lifePoints11">♡</label>    
+                    <input type="radio" formControlName="lifePoints" value="10.00" id="lifePoints10">
+                    <label for="lifePoints10">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="9.00" id="lifePoints9">
+                    <label for="lifePoints9">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="8.00" id="lifePoints8">
+                    <label for="lifePoints8">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="7.00" id="lifePoints7">
+                    <label for="lifePoints7">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="6.00" id="lifePoints6">
+                    <label for="lifePoints6">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="5.00" id="lifePoints5">
+                    <label for="lifePoints5">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="4.00" id="lifePoints4">
+                    <label for="lifePoints4">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="3.00" id="lifePoints3">
+                    <label for="lifePoints3">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="2.00" id="lifePoints2">
+                    <label for="lifePoints2">♡</label>
+                    <input type="radio" formControlName="lifePoints" value="1.00" id="lifePoints1">
+                    <label for="lifePoints1">♡</label>            
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="col-md-12 col-sm-12 vitality">
+                Vitalidade/Fraqueza
+          
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <input class="form-check-input" type="checkbox" id="bruised" formControlName="bruised" value="false">
+                        <label class="form-check-label" for="bruised">Escoriado</label>
+                    </div>
+          
+                    <div class="col-md-3 col-sm-12">
+                        <input class="form-check-input" type="checkbox" id="hurted" formControlName="hurted" value="false" (click)="changed(1)">
+                        <label class="form-check-label" for="hurted">Machucado (-1)</label>
+                    </div>
+          
+                    <div class="col-md-3 col-sm-12">
+                        <input class="form-check-input" type="checkbox" id="injured" formControlName="injured" value="false" (click)="changed(1)">
+                        <label class="form-check-label" for="injured">Ferido (-1)</label>
+                    </div>
+          
+                    <div class="col-md-3 col-sm-12">
+                        <input class="form-check-input" type="checkbox" id="seriously" formControlName="seriously" value="false" (click)="changed(2)">
+                        <label class="form-check-label" for="seriously">Ferido Gravemente (-2)</label>
+                    </div>
+          
+                    <div class="col-md-3 col-sm-12">
+                        <input class="form-check-input" type="checkbox" id="beaten" formControlName="beaten" value="false" (click)="changed(2)">
+                        <label class="form-check-label" for="beaten">Espancado (-2)</label>
+                    </div>
+          
+                    <div class="col-md-3 col-sm-12">
+                        <input class="form-check-input" type="checkbox" id="crippled" formControlName="crippled" value="false" (click)="changed(5)">
+                        <label class="form-check-label" for="crippled">Aleijado (-5)</label>
+                    </div>
+          
+                    <div class="col-md-3 col-sm-12">
+                        <input class="form-check-input" type="checkbox" id="incapacitated" formControlName="incapacitated" value="false" (click)="changed(5)">
+                        <label class="form-check-label" for="incapacitated">Incapacitado (-5)</label>
+                    </div>
+          
+                    <div class="col-md-3 col-sm-12">
+                        <input class="form-check-input" type="checkbox" id="unconscious" formControlName="unconscious" value="false">
+                        <label class="form-check-label" for="unconscious">Desmaiado</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr style="opacity: 0;">
+
+        <div class="col-12 text-end">
+            <button class="btn-save" type="submit">Salvar Informações</button>
+        </div>
+    </form>
+</div>

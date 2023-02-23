@@ -30,4 +30,16 @@ export class ArcanusService {
   setSkills(data: any) : Observable<any> {
     return this.http.post(`${this.apiUrl}/setSkills`, data);
   }
+
+  getOthers(id: number) : Observable<any> {
+    return this.http.post(`${this.apiUrl}/getOthers`, {arcanusId: id});
+  }
+
+  setOthers(data: any) : Observable<any> {
+    return this.http.post(`${this.apiUrl}/setOthers`, data);
+  }
+
+  changed(data: any) : Observable<any> {
+    return this.http.post(`${this.apiUrl}/changed`, data);
+  }
 }
