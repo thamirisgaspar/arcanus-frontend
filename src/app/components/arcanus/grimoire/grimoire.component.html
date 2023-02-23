@@ -1,1 +1,168 @@
-<p>grimoire works!</p>
+<div class="container text-center">
+    <div class="divider">
+        <span class="outer-line"></span>
+        <span class="formControlNameDivider">GRIMORIO</span>
+        <span class="outer-line"></span>
+    </div>
+
+    <div *ngIf="isLoading"><app-spinner></app-spinner></div>
+
+    <form class="form-group" [formGroup]="infoForm" (ngSubmit)="infoSubmit()" *ngIf="!isLoading">
+        <div *ngIf="msgShow" class="alert alert-{{alertType}} alert-dismissible" role="alert">
+            {{msg}}
+      
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="clearMsg()"></button>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3 anima">
+                <h6>Anima Mentia</h6>
+          
+                <div class="rating">
+                    <input type="radio" formControlName="animaMentia" value="10.00" id="animaMentia10">
+                    <label for="animaMentia10">☆</label>
+                    <input type="radio" formControlName="animaMentia" value="9.00" id="animaMentia9">
+                    <label for="animaMentia9">☆</label>
+                    <input type="radio" formControlName="animaMentia" value="8.00" id="animaMentia8">
+                    <label for="animaMentia8">☆</label>
+                    <input type="radio" formControlName="animaMentia" value="7.00" id="animaMentia7">
+                    <label for="animaMentia7">☆</label>
+                    <input type="radio" formControlName="animaMentia" value="6.00" id="animaMentia6">
+                    <label for="animaMentia6">☆</label>
+                    <input type="radio" formControlName="animaMentia" value="5.00" id="animaMentia5">
+                    <label for="animaMentia5">☆</label>
+                    <input type="radio" formControlName="animaMentia" value="4.00" id="animaMentia4">
+                    <label for="animaMentia4">☆</label>
+                    <input type="radio" formControlName="animaMentia" value="3.00" id="animaMentia3">
+                    <label for="animaMentia3">☆</label>
+                    <input type="radio" formControlName="animaMentia" value="2.00" id="animaMentia2">
+                    <label for="animaMentia2">☆</label>
+                    <input type="radio" formControlName="animaMentia" value="1.00" id="animaMentia1">
+                    <label for="animaMentia1">☆</label>
+                </div>
+            </div>
+
+            <div class="row" style="padding-left: 40px;">
+                <div class="col-md-4 aqua">
+                    <h6>Aqua Defensia</h6>
+            
+                    <div class="rating">
+                        <input type="radio" formControlName="aquaDefensia" value="10.00" id="aquaDefensia10">
+                        <label for="aquaDefensia10">☆</label>
+                        <input type="radio" formControlName="aquaDefensia" value="9.00" id="aquaDefensia9">
+                        <label for="aquaDefensia9">☆</label>
+                        <input type="radio" formControlName="aquaDefensia" value="8.00" id="aquaDefensia8">
+                        <label for="aquaDefensia8">☆</label>
+                        <input type="radio" formControlName="aquaDefensia" value="7.00" id="aquaDefensia7">
+                        <label for="aquaDefensia7">☆</label>
+                        <input type="radio" formControlName="aquaDefensia" value="6.00" id="aquaDefensia6">
+                        <label for="aquaDefensia6">☆</label>
+                        <input type="radio" formControlName="aquaDefensia" value="5.00" id="aquaDefensia5">
+                        <label for="aquaDefensia5">☆</label>
+                        <input type="radio" formControlName="aquaDefensia" value="4.00" id="aquaDefensia4">
+                        <label for="aquaDefensia4">☆</label>
+                        <input type="radio" formControlName="aquaDefensia" value="3.00" id="aquaDefensia3">
+                        <label for="aquaDefensia3">☆</label>
+                        <input type="radio" formControlName="aquaDefensia" value="2.00" id="aquaDefensia2">
+                        <label for="aquaDefensia2">☆</label>
+                        <input type="radio" formControlName="aquaDefensia" value="1.00" id="aquaDefensia1">
+                        <label for="aquaDefensia1">☆</label>
+                    </div>
+                </div>
+
+                <div class="col-md-4 ms-md-auto">
+                    <img src="../../../assets/img/grimorio.jpeg" class="img-fluid">
+                </div>
+
+                <div class="col-md-4 ignis">
+                    <h6>Ignis Potentia</h6>
+            
+                    <div class="rating">
+                        <input type="radio" formControlName="ignisPotentia" value="10.00" id="ignisPotentia10">
+                        <label for="ignisPotentia10">☆</label>
+                        <input type="radio" formControlName="ignisPotentia" value="9.00" id="ignisPotentia9">
+                        <label for="ignisPotentia9">☆</label>
+                        <input type="radio" formControlName="ignisPotentia" value="8.00" id="ignisPotentia8">
+                        <label for="ignisPotentia8">☆</label>
+                        <input type="radio" formControlName="ignisPotentia" value="7.00" id="ignisPotentia7">
+                        <label for="ignisPotentia7">☆</label>
+                        <input type="radio" formControlName="ignisPotentia" value="6.00" id="ignisPotentia6">
+                        <label for="ignisPotentia6">☆</label>
+                        <input type="radio" formControlName="ignisPotentia" value="5.00" id="ignisPotentia5">
+                        <label for="ignisPotentia5">☆</label>
+                        <input type="radio" formControlName="ignisPotentia" value="4.00" id="ignisPotentia4">
+                        <label for="ignisPotentia4">☆</label>
+                        <input type="radio" formControlName="ignisPotentia" value="3.00" id="ignisPotentia3">
+                        <label for="ignisPotentia3">☆</label>
+                        <input type="radio" formControlName="ignisPotentia" value="2.00" id="ignisPotentia2">
+                        <label for="ignisPotentia2">☆</label>
+                        <input type="radio" formControlName="ignisPotentia" value="1.00" id="v1">
+                        <label for="ignisPotentia1">☆</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="padding-left: 40px;">
+                <div class="col-md-4 terrae">
+                    <h6>Terrae Resistentia</h6>
+            
+                    <div class="rating">
+                        <input type="radio" formControlName="terraeResistentia" value="10.00" id="1terraeResistentia0">
+                        <label for="terraeResistentia10">☆</label>
+                        <input type="radio" formControlName="terraeResistentia" value="9.00" id="terraeResistentia9">
+                        <label for="terraeResistentia9">☆</label>
+                        <input type="radio" formControlName="terraeResistentia" value="8.00" id="terraeResistentia8">
+                        <label for="terraeResistentia8">☆</label>
+                        <input type="radio" formControlName="terraeResistentia" value="7.00" id="terraeResistentia7">
+                        <label for="terraeResistentia7">☆</label>
+                        <input type="radio" formControlName="terraeResistentia" value="6.00" id="terraeResistentia6">
+                        <label for="terraeResistentia6">☆</label>
+                        <input type="radio" formControlName="terraeResistentia" value="5.00" id="terraeResistentia5">
+                        <label for="terraeResistentia5">☆</label>
+                        <input type="radio" formControlName="terraeResistentia" value="4.00" id="terraeResistentia4">
+                        <label for="terraeResistentia4">☆</label>
+                        <input type="radio" formControlName="terraeResistentia" value="3.00" id="terraeResistentia3">
+                        <label for="terraeResistentia3">☆</label>
+                        <input type="radio" formControlName="terraeResistentia" value="2.00" id="terraeResistentia2">
+                        <label for="terraeResistentia2">☆</label>
+                        <input type="radio" formControlName="terraeResistentia" value="1.00" id="terraeResistentia1">
+                        <label for="terraeResistentia1">☆</label>
+                    </div>
+                </div>
+
+                <div class="col-md-4 offset-md-4 aria">
+                    <h6>Aria Literatus</h6>
+            
+                    <div class="rating">
+                        <input type="radio" formControlName="ariaLiteratus" value="10.00" id="ariaLiteratus10">
+                        <label for="ariaLiteratus10">☆</label>
+                        <input type="radio" formControlName="ariaLiteratus" value="9.00" id="ariaLiteratus9">
+                        <label for="ariaLiteratus9">☆</label>
+                        <input type="radio" formControlName="ariaLiteratus" value="8.00" id="ariaLiteratus8">
+                        <label for="ariaLiteratus8">☆</label>
+                        <input type="radio" formControlName="ariaLiteratus" value="7.00" id="ariaLiteratus7">
+                        <label for="ariaLiteratus7">☆</label>
+                        <input type="radio" formControlName="ariaLiteratus" value="6.00" id="ariaLiteratus6">
+                        <label for="ariaLiteratus6">☆</label>
+                        <input type="radio" formControlName="ariaLiteratus" value="5.00" id="ariaLiteratus5">
+                        <label for="ariaLiteratus5">☆</label>
+                        <input type="radio" formControlName="ariaLiteratus" value="4.00" id="ariaLiteratus4">
+                        <label for="ariaLiteratus4">☆</label>
+                        <input type="radio" formControlName="ariaLiteratus" value="3.00" id="ariaLiteratus3">
+                        <label for="ariaLiteratus3">☆</label>
+                        <input type="radio" formControlName="ariaLiteratus" value="2.00" id="ariaLiteratus2">
+                        <label for="ariaLiteratus2">☆</label>
+                        <input type="radio" formControlName="ariaLiteratus" value="1.00" id="ariaLiteratus1">
+                        <label for="ariaLiteratus1">☆</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr style="opacity: 0;">
+
+        <div class="col-12 text-end">
+            <button class="btn-save" type="submit">Salvar Grimorio</button>
+        </div>
+    </form>
+</div>

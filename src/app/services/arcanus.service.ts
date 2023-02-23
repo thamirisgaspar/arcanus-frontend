@@ -42,4 +42,12 @@ export class ArcanusService {
   changed(data: any) : Observable<any> {
     return this.http.post(`${this.apiUrl}/changed`, data);
   }
+
+  getGrimoire(id: number) : Observable<any> {
+    return this.http.post(`${this.apiUrl}/getGrimoire`, {arcanusId: id});
+  }
+
+  setGrimoire(data: any) : Observable<any> {
+    return this.http.post(`${this.apiUrl}/setGrimoire`, data);
+  }
 }
