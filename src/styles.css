@@ -1,1 +1,124 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: ancient;
+    src: url(assets/fonts/Ancient/AncientMedium.ttf);
+}
+  
+@font-face {
+    font-family: old;
+    src: url(assets/fonts/Old_English/OldEnglish.ttf);
+}
+  
+@font-face {
+    font-family: blood;
+    src: url(assets/fonts/blood-crow/bloodcrow.ttf);
+}
+
+html, body { 
+    height: 100%; 
+}
+
+body { 
+    margin: 0;
+    background-image: url("./assets/img/backgroud.jpg");
+    background-size: cover;
+    background-position: center;
+    color: #000 !important;
+}
+
+h1 {
+    font-family: old;
+    font-size: 100px;
+    font-weight: 500;
+    margin: 0;
+}
+
+@media screen and (min-width: 350px) and (max-width: 450px) {
+    h1 {
+        font-size: 40px !important;
+    }
+}
+
+h5, h6 {
+    font-family: blood;
+}
+
+a {
+    font-family: blood !important;
+}
+
+form {
+    margin-top: 20px;
+}
+
+.to-top {
+    bottom: 0;
+    cursor: pointer;
+    margin: 0 15px 15px 0;
+    position: fixed;
+    right: 0;
+    opacity: 0;
+}
+  
+.show-scrollTop {
+    opacity: 1 !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-default {
+    background: #710c04 !important;
+    color: #FFF !important;
+    border: 1px solid #710c04 !important;
+    font-family: blood !important;
+}
+
+.btn-default:hover,
+.btn-default:active,
+.btn-default:focus,
+.btn-default:disabled {
+    background: #000 !important;
+    color: #FFF !important;
+}
+
+.mat-mdc-tab {
+    font-family: blood;
+}
+
+.mat-mdc-tab-body-content {
+    overflow: hidden !important;
+}
+
+.mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label, 
+.mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active .mdc-tab__text-label {
+    color: #710c04 !important;
+}
+
+.mat-mdc-tab:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline, 
+.mat-mdc-tab-link:not(.mat-mdc-tab-disabled) .mdc-tab-indicator__content--underline {
+    border-color: var(--mdc-tab-indicator-active-indicator-color, #710c04) !important;
+}
+
+.mat-mdc-form-field {
+    display: block !important;
+    font-family: blood !important;
+    margin-bottom: 20px !important;
+}
+
+.mdc-text-field--filled .mdc-line-ripple::after {
+    border-bottom-color: var(--mdc-theme-primary, #710c04) !important;
+}
+
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: #710c04 !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+    font-size: 13px !important;
+}
+
+.mat-mdc-checkbox {
+    --mdc-checkbox-selected-focus-icon-color: #710c04 !important;
+    --mdc-checkbox-selected-hover-icon-color: #710c04 !important;
+    --mdc-checkbox-selected-icon-color: #710c04 !important;
+    --mdc-checkbox-selected-pressed-icon-color: #710c04 !important;
+}
