@@ -20,7 +20,7 @@ import { UsersComponent } from '../users.component';
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     LoaderComponent,
     MatFormFieldModule,
@@ -93,5 +93,5 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-  
+
 }

@@ -8,6 +8,7 @@ import { Component, ViewEncapsulation, OnInit, Input, ViewChild, ViewContainerRe
 })
 export class UsersComponent implements OnInit {
   @Input() isLoading: boolean = false;
+  @Input() selectedIndex: number = 0;
   @ViewChild('login', { read: ViewContainerRef }) login!: ViewContainerRef;
   @ViewChild('signup', { read: ViewContainerRef }) signup!: ViewContainerRef;
 

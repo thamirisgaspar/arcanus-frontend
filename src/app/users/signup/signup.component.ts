@@ -17,7 +17,7 @@ import { UsersComponent } from '../users.component';
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -120,10 +120,11 @@ export class SignupComponent implements OnInit {
         this.mailService.sendEmail(data);
         this.msg = res.msg;
         this.alertType = 'info';
-      } else {        
+        this.users.selectedIndex = 0;
+      } else {
         this.msg = 'Erro ao criar registro! Tente novamente!';
         this.alertType = 'danger';
-        
+
       }
 
       this.msgShow = true;

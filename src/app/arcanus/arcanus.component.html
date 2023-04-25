@@ -1,22 +1,25 @@
 <div class="container">
-    <app-logout></app-logout>
-    
+  <app-logout></app-logout>
+
+  <div *ngIf="isLoading"><app-loader [isLoading]="isLoading"></app-loader></div>
+
+  <div *ngIf="!isLoading">
     <div class="row">
         <ng-container #information></ng-container>
     </div>
-    
+
     <div class="row">
         <ng-container #skills></ng-container>
     </div>
-    
+
     <div class="row">
         <ng-container #magicae></ng-container>
     </div>
-    
+
     <div class="row">
         <ng-container #others></ng-container>
     </div>
-    
+
     <div class="row">
         <ng-container #grimoire></ng-container>
     </div>
@@ -24,4 +27,5 @@
     <div class="row">
         <ng-container #notes></ng-container>
     </div>
+  </div>
 </div>

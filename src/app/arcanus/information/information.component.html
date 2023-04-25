@@ -1,2 +1,154 @@
 <app-divider divider="⛧⛧⛧⛧⛧⛧"></app-divider>
-<p>information works!</p>
+
+<div class="container">
+  <form class="form-group" [formGroup]="infoForm" (ngSubmit)="infoSubmit()">
+      <div *ngIf="msgShow" class="alert alert-{{alertType}} alert-dismissible" role="alert">
+          {{msg}}
+
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="clearMsg()"></button>
+      </div>
+
+      <div class="row">
+          <div class="col-md-6 col-sm-12">
+              <mat-form-field hintLabel="Max 150 characters" appearance="fill">
+                  <mat-label>Char</mat-label>
+                  <input matInput #char maxlength="150" placeholder="Char" formControlName="char" required>
+                  <mat-hint align="end">{{char.value.length}}/150</mat-hint>
+                  <mat-error *ngIf="infoForm.controls.char.hasError('required')">
+                      Char é <strong>obrigatório</strong>
+                  </mat-error>
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6 col-sm-12">
+              <mat-form-field hintLabel="Max 150 characters" appearance="fill">
+                  <mat-label>Player</mat-label>
+                  <input matInput #player maxlength="150" placeholder="Jogador" formControlName="player" required>
+                  <mat-hint align="end">{{player.value.length}}/150</mat-hint>
+                  <mat-error *ngIf="infoForm.controls.player.hasError('required')">
+                      Jogador é <strong>obrigatório</strong>
+                  </mat-error>
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6 col-sm-12">
+              <mat-form-field hintLabel="Max 100 characters" appearance="fill">
+                  <mat-label>Classe</mat-label>
+                  <input matInput #class maxlength="100" placeholder="Classe" formControlName="class" required>
+                  <mat-hint align="end">{{class.value.length}}/100</mat-hint>
+                  <mat-error *ngIf="infoForm.controls.class.hasError('required')">
+                      Classe é <strong>obrigatório</strong>
+                  </mat-error>
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6 col-sm-12">
+              <mat-form-field hintLabel="Max 100 characters" appearance="fill">
+                  <mat-label>Crônica</mat-label>
+                  <input matInput #chronicle maxlength="100" placeholder="Crônica" formControlName="chronicle" required>
+                  <mat-hint align="end">{{chronicle.value.length}}/100</mat-hint>
+                  <mat-error *ngIf="infoForm.controls.chronicle.hasError('required')">
+                      Crônica é <strong>obrigatório</strong>
+                  </mat-error>
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6 col-sm-12" style="display: block; margin: 0 auto;">
+              <mat-form-field hintLabel="Max 150 characters" appearance="fill">
+                  <mat-label>XP</mat-label>
+                  <input type="number" matInput #xp maxlength="150" placeholder="XP" formControlName="xp" required>
+                  <mat-hint align="end">{{xp.value.length}}/150</mat-hint>
+                  <mat-error *ngIf="infoForm.controls.xp.hasError('required')">
+                      XP é <strong>obrigatório</strong>
+                  </mat-error>
+              </mat-form-field>
+          </div>
+
+          <div class="col-12">
+              <mat-form-field appearance="fill">
+                  <mat-label>Backgroung</mat-label>
+                  <textarea matInput #background placeholder="Background" formControlName="background"></textarea>
+              </mat-form-field>
+          </div>
+      </div>
+
+      <app-divider divider="ATRIBUTOS"></app-divider>
+
+      <div class="row text-center">
+          <div class="col-md-4 col-sm-12">
+              <h5>FÍSICOS</h5>
+
+              <div class="streight text-center">
+                  <h6>Força</h6>
+                  <app-rating [rating]="this.infoForm.controls.streight.value" (ratingUpdated)="onRatingChanged($event, 'streight')"></app-rating>
+              </div>
+
+              <br>
+
+              <div class="dexterity text-center">
+                  <h6>Destreza</h6>
+                  <app-rating [rating]="this.infoForm.controls.dexterity.value" (ratingUpdated)="onRatingChanged($event, 'dexterity')"></app-rating>
+              </div>
+
+              <br>
+
+              <div class="life text-center">
+                  <h6>Vigor</h6>
+                  <app-rating [rating]="this.infoForm.controls.life.value" (ratingUpdated)="onRatingChanged($event, 'life')"></app-rating>
+              </div>
+          </div>
+
+          <div class="col-md-4 col-sm-12">
+              <h5>SOCIAIS</h5>
+
+              <div class="charisma text-center">
+                  <h6>Carisma</h6>
+                  <app-rating [rating]="this.infoForm.controls.charisma.value" (ratingUpdated)="onRatingChanged($event, 'charisma')"></app-rating>
+              </div>
+
+              <br>
+
+              <div class="manipulation text-center">
+                  <h6>Manipulação</h6>
+                  <app-rating [rating]="this.infoForm.controls.manipulation.value" (ratingUpdated)="onRatingChanged($event, 'manipulation')"></app-rating>
+              </div>
+
+              <br>
+
+              <div class="apearence text-center">
+                  <h6>Aparência</h6>
+                  <app-rating [rating]="this.infoForm.controls.apearence.value" (ratingUpdated)="onRatingChanged($event, 'apearence')"></app-rating>
+              </div>
+          </div>
+
+          <div class="col-md-4 col-sm-12">
+              <h5>MENTAIS</h5>
+
+              <div class="perception text-center">
+                  <h6>Percepção</h6>
+                  <app-rating [rating]="this.infoForm.controls.perception.value" (ratingUpdated)="onRatingChanged($event, 'perception')"></app-rating>
+              </div>
+
+              <br>
+
+              <div class="intelligence text-center">
+                  <h6>Inteligência</h6>
+                  <app-rating [rating]="this.infoForm.controls.intelligence.value" (ratingUpdated)="onRatingChanged($event, 'intelligence')"></app-rating>
+              </div>
+
+              <br>
+
+              <div class="reasoning text-center">
+                  <h6>Raciocínio</h6>
+                  <app-rating [rating]="this.infoForm.controls.reasoning.value" (ratingUpdated)="onRatingChanged($event, 'reasoning')"></app-rating>
+              </div>
+          </div>
+      </div>
+
+      <br>
+
+      <div class="col-12 text-end">
+          <button mat-raised-button class="btn-default" type="submit">Salvar Atributos</button>
+      </div>
+  </form>
+</div>
