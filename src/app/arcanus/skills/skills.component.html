@@ -1,2 +1,182 @@
-<app-divider divider="⛧SKILLS⛧"></app-divider>
-<p>skills works!</p>
+<div *ngIf="isLoading"><app-loader [isLoading]="isLoading"></app-loader></div>
+<div class="container"  *ngIf="!isLoading">
+    <app-divider divider="⛧SKILLS⛧"></app-divider>
+
+    <form class="form-group" [formGroup]="skillsForm" (ngSubmit)="skillsSubmit()">
+        <div *ngIf="msgShow" class="alert alert-{{alertType}} alert-dismissible" role="alert">
+            {{msg}}
+      
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="clearMsg()"></button>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-12 text-center">
+                <h5>TALENTOS</h5>
+
+                <div class="readness">
+                    <h6>Prontidão</h6>
+                    <app-rating [rating]="this.skillsForm.controls.readness.value" (ratingUpdated)="onRatingChanged($event, 'readness')"></app-rating>
+                </div>
+
+                <div class="sports">
+                    <h6>Esportes</h6>
+                    <app-rating [rating]="this.skillsForm.controls.sports.value" (ratingUpdated)="onRatingChanged($event, 'sports')"></app-rating>
+                </div>
+
+                <div class="fight">
+                    <h6>Briga</h6>
+                    <app-rating [rating]="this.skillsForm.controls.fight.value" (ratingUpdated)="onRatingChanged($event, 'fight')"></app-rating>
+                </div>
+
+                <div class="dodge">
+                    <h6>Esquiva</h6>
+                    <app-rating [rating]="this.skillsForm.controls.dodge.value" (ratingUpdated)="onRatingChanged($event, 'dodge')"></app-rating>
+                </div>
+
+                <div class="empath">
+                    <h6>Empatia</h6>
+                    <app-rating [rating]="this.skillsForm.controls.empath.value" (ratingUpdated)="onRatingChanged($event, 'empath')"></app-rating>
+                </div>
+
+                <div class="expression">
+                    <h6>Expressão</h6>
+                    <app-rating [rating]="this.skillsForm.controls.expression.value" (ratingUpdated)="onRatingChanged($event, 'expression')"></app-rating>
+                </div>
+
+                <div class="intimidation">
+                    <h6>Intimidação</h6>
+                    <app-rating [rating]="this.skillsForm.controls.intimidation.value" (ratingUpdated)="onRatingChanged($event, 'intimidation')"></app-rating>
+                </div>
+
+                <div class="leadership">
+                    <h6>Liderança</h6>
+                    <app-rating [rating]="this.skillsForm.controls.leadership.value" (ratingUpdated)="onRatingChanged($event, 'leadership')"></app-rating>
+                </div>
+
+                <div class="ruse">
+                    <h6>Manha</h6>
+                    <app-rating [rating]="this.skillsForm.controls.ruse.value" (ratingUpdated)="onRatingChanged($event, 'ruse')"></app-rating>
+                </div>
+
+                <div class="lip">
+                    <h6>Lábia</h6>
+                    <app-rating [rating]="this.skillsForm.controls.lip.value" (ratingUpdated)="onRatingChanged($event, 'lip')"></app-rating>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-12 text-center">
+                <h5>PERÍCIAS</h5>
+
+                <div class="animalEmpath">
+                    <h6>Empatia com animais</h6>
+                    <app-rating [rating]="this.skillsForm.controls.animalEmpath.value" (ratingUpdated)="onRatingChanged($event, 'animalEmpath')"></app-rating>
+                </div>
+
+                <div class="trades">
+                    <h6>Ofícios</h6>
+                    <app-rating [rating]="this.skillsForm.controls.trades.value" (ratingUpdated)="onRatingChanged($event, 'trades')"></app-rating>
+                </div>
+
+                <div class="conduction">
+                    <h6>Condução</h6>
+                    <app-rating [rating]="this.skillsForm.controls.conduction.value" (ratingUpdated)="onRatingChanged($event, 'conduction')"></app-rating>
+                </div>
+
+                <div class="tag">
+                    <h6>Etiqueta</h6>
+                    <app-rating [rating]="this.skillsForm.controls.tag.value" (ratingUpdated)="onRatingChanged($event, 'tag')"></app-rating>
+                </div>
+
+                <div class="fireGun">
+                    <h6>Armas de Fogo</h6>
+                    <app-rating [rating]="this.skillsForm.controls.fireGun.value" (ratingUpdated)="onRatingChanged($event, 'fireGun')"></app-rating>
+                </div>
+
+                <div class="whiteArms">
+                    <h6>Armas Brancas</h6>
+                    <app-rating [rating]="this.skillsForm.controls.whiteArms.value" (ratingUpdated)="onRatingChanged($event, 'whiteArms')"></app-rating>
+                </div>
+
+                <div class="perform">
+                    <h6>Performance</h6>
+                    <app-rating [rating]="this.skillsForm.controls.perform.value" (ratingUpdated)="onRatingChanged($event, 'perform')"></app-rating>
+                </div>
+
+                <div class="security">
+                    <h6>Segurança</h6>
+                    <app-rating [rating]="this.skillsForm.controls.security.value" (ratingUpdated)="onRatingChanged($event, 'security')"></app-rating>
+                </div>
+
+                <div class="stealth">
+                    <h6>Privacidade</h6>
+                    <app-rating [rating]="this.skillsForm.controls.stealth.value" (ratingUpdated)="onRatingChanged($event, 'stealth')"></app-rating>
+                </div>
+
+                <div class="survivor">
+                    <h6>Sobrevivência</h6>
+                    <app-rating [rating]="this.skillsForm.controls.survivor.value" (ratingUpdated)="onRatingChanged($event, 'survivor')"></app-rating>
+                </div> 
+            </div>
+
+            <div class="col-md-4 col-sm-12 text-center">
+                <h5>Conhecimentos</h5>
+
+                <div class="academic">
+                    <h6>Acadêmico</h6>
+                    <app-rating [rating]="this.skillsForm.controls.academic.value" (ratingUpdated)="onRatingChanged($event, 'academic')"></app-rating>
+                </div>
+
+                <div class="it">
+                    <h6>Computador</h6>
+                    <app-rating [rating]="this.skillsForm.controls.it.value" (ratingUpdated)="onRatingChanged($event, 'it')"></app-rating>
+                </div>
+
+                <div class="financial">
+                    <h6>Finanças</h6>
+                    <app-rating [rating]="this.skillsForm.controls.financial.value" (ratingUpdated)="onRatingChanged($event, 'financial')"></app-rating>
+                </div>
+
+                <div class="investigation">
+                    <h6>Investigação</h6>
+                    <app-rating [rating]="this.skillsForm.controls.investigation.value" (ratingUpdated)="onRatingChanged($event, 'investigation')"></app-rating>
+                </div>
+
+                <div class="legal">
+                    <h6>Direito</h6>
+                    <app-rating [rating]="this.skillsForm.controls.legal.value" (ratingUpdated)="onRatingChanged($event, 'legal')"></app-rating>
+                </div>
+
+                <div class="language">
+                    <h6>Ligüistíca</h6>
+                    <app-rating [rating]="this.skillsForm.controls.language.value" (ratingUpdated)="onRatingChanged($event, 'language')"></app-rating>
+                </div>
+
+                <div class="medicine">
+                    <h6>Medicina</h6>
+                    <app-rating [rating]="this.skillsForm.controls.medicine.value" (ratingUpdated)="onRatingChanged($event, 'medicine')"></app-rating>
+                </div>
+
+                <div class="pagan">
+                    <h6>Ocultismo</h6>
+                    <app-rating [rating]="this.skillsForm.controls.pagan.value" (ratingUpdated)="onRatingChanged($event, 'pagan')"></app-rating>
+                </div>
+
+                <div class="government">
+                    <h6>Política</h6>
+                    <app-rating [rating]="this.skillsForm.controls.government.value" (ratingUpdated)="onRatingChanged($event, 'government')"></app-rating>
+                </div>
+
+                <div class="science">
+                    <h6>Ciência</h6>
+                    <app-rating [rating]="this.skillsForm.controls.science.value" (ratingUpdated)="onRatingChanged($event, 'science')"></app-rating>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="col-12 text-end">
+            <button mat-raised-button class="btn-default" type="submit">Salvar Skills</button>
+        </div>
+    </form>
+</div>

@@ -68,7 +68,7 @@ export class InformationComponent implements OnInit {
       this.isLoading = false;
 
       if (res.status == true && res.result != null) {
-        this.arcanus.arcanusId = res.result.arcanusid;
+        this.arcanus.arcanusId = res.result.id;
         this.infoForm.controls.char.setValue(res.result.char);
         this.infoForm.controls.class.setValue(res.result.class);
         this.infoForm.controls.chronicle.setValue(res.result.chronicle) 
