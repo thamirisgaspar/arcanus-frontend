@@ -54,4 +54,12 @@ export class ArcanusService {
   setNotes(data: any) : Observable<any> {
     return this.http.post(`${this.apiUrl}/setNotes`, data);
   }
+
+  getMagicaes(id: number) : Observable<any> {
+    return this.http.post(`${this.apiUrl}/getMagicaes`, {userId: id});
+  }
+
+  setMagicaes(data: any) : Observable<any> {
+    return this.http.post(`${this.apiUrl}/setMagicaes`, data);
+  }
 }

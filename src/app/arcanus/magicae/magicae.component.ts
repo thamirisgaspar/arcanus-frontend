@@ -45,9 +45,10 @@ export class MagicaeComponent implements OnInit {
     this.isLoading = true;
 
     this.magicaeForm = this.formBuilder.group({
-      arcanusId: [this.arcanus.arcanusId],
       magicaes: this.formBuilder.array([
         this.formBuilder.group({
+          id: [0],
+          arcanusId: [this.arcanus.arcanusId],
           magicae: [''],
           value: ['0']
         })
@@ -64,8 +65,8 @@ export class MagicaeComponent implements OnInit {
     this.alertType = '';
   }
 
-  onRatingChanged(rating: Number, attr: string){
-    this.magicaeForm.controls[attr].setValue(rating);    
+  onRatingChanged(rating: Number, id: number, attr: string){
+    this.magicaeForm.controls['magicaes'].controls[id].controls['value'].setValue(rating);    
   }
 
   get getMagicaes() {
@@ -75,13 +76,26 @@ export class MagicaeComponent implements OnInit {
   addMagicae() {
     const control = <FormArray>this.magicaeForm.controls['magicaes'];
     control.push(this.formBuilder.group({
+      id: [0],
+      arcanusId: [this.arcanus.arcanusId],
       magicae: [''],
       value: ['0']
     }));
   }
 
   magicaesSubmit() {
+    if (this.magicaeForm.valid) {
+      //this.isLoading = true;
 
+      this.arcanusService.setMagicaes(this.magicaeForm.value).subscribe((res) => {
+        
+      });
+
+    } else {
+      this.msg = 'Verifique as magicaes!';
+      this.alertType = 'danger';
+      this.msgShow = true;
+    }
   }
 
 }

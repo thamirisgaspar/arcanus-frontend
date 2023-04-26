@@ -18,11 +18,14 @@
                                 <mat-label>Magicae</mat-label>
                                 <input matInput #magicae maxlength="150" placeholder="Magicae" formControlName="magicae" required>
                                 <mat-hint align="end">{{magicae.value.length}}/150</mat-hint>
+                                <mat-error *ngIf="magicaeForm.controls['magicaes'].controls[pointIndex].controls['magicae'].hasError('required')">
+                                    Char é <strong>obrigatório</strong>
+                                </mat-error>
                             </mat-form-field>
                         </div>
 
                         <div class="col-md-4 col-sm-12 text-center">
-                            <app-rating [rating]="item.value.value" (ratingUpdated)="onRatingChanged($event, 'value')"></app-rating>
+                            <app-rating [rating]="item.value.value" (ratingUpdated)="onRatingChanged($event, pointIndex, 'value')"></app-rating>
                         </div>
                     </div>
                 </div>
