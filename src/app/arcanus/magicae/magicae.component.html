@@ -1,2 +1,44 @@
-<app-divider divider="MAGICAES"></app-divider>
-<p>magicae works!</p>
+<div *ngIf="isLoading"><app-loader [isLoading]="isLoading"></app-loader></div>
+<div class="container"  *ngIf="!isLoading">
+    <app-divider divider="MAGICAES"></app-divider>
+
+    <form class="form-group" [formGroup]="magicaeForm" (ngSubmit)="magicaesSubmit()">
+        <div *ngIf="msgShow" class="alert alert-{{alertType}} alert-dismissible" role="alert">
+            {{msg}}
+      
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="clearMsg()"></button>
+        </div>
+
+        <div class="form-group">
+            <div formArrayName="magicaes">
+                <div *ngFor="let item of getMagicaes.controls; let pointIndex=index;" [formGroupName]="pointIndex">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-12">
+                            <mat-form-field hintLabel="Max 150 characters" appearance="fill">
+                                <mat-label>Magicae</mat-label>
+                                <input matInput #magicae maxlength="150" placeholder="Magicae" formControlName="magicae" required>
+                                <mat-hint align="end">{{magicae.value.length}}/150</mat-hint>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-4 col-sm-12 text-center">
+                            <app-rating [rating]="item.value.value" (ratingUpdated)="onRatingChanged($event, 'value')"></app-rating>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="col-12 text-center">
+                    <button mat-raised-button class="btn-default" type="button" (click)="addMagicae();">Add Magicae</button>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="col-12 text-end">
+            <button mat-raised-button class="btn-default" type="submit">Salvar Magicaes</button>
+        </div>
+    </form>
+</div>
