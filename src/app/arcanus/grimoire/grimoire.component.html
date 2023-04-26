@@ -1,2 +1,53 @@
-<app-divider divider="GRIMOIRE"></app-divider>
-<p>grimoire works!</p>
+<div *ngIf="isLoading"><app-loader [isLoading]="isLoading"></app-loader></div>
+<div class="container text-center"  *ngIf="!isLoading">
+    <app-divider divider="GRIMOIRE"></app-divider>
+
+    <form class="form-group" [formGroup]="grimForm" (ngSubmit)="grimSubmit()">
+        <div *ngIf="msgShow" class="alert alert-{{alertType}} alert-dismissible" role="alert">
+            {{msg}}
+      
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="clearMsg()"></button>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-md-6 offset-md-3 anima">
+                <h6>Anima Mentia</h6>
+                <app-rating [rating]="this.grimForm.controls.animaMentia.value" (ratingUpdated)="onRatingChanged($event, 'animaMentia')"></app-rating>
+            </div>
+
+            <div class="row" style="padding-left: 40px;">
+                <div class="col-md-4 aqua">
+                    <h6>Aqua Defensia</h6>
+                    <app-rating [rating]="this.grimForm.controls.aquaDefensia.value" (ratingUpdated)="onRatingChanged($event, 'aquaDefensia')"></app-rating>
+                </div>
+
+                <div class="col-md-4 ms-md-auto">
+                    <img src="../../../assets/img/grimorio.jpeg" class="img-fluid">
+                </div>
+
+                <div class="col-md-4 ignis">
+                    <h6>Ignis Potentia</h6>
+                    <app-rating [rating]="this.grimForm.controls.ignisPotentia.value" (ratingUpdated)="onRatingChanged($event, 'ignisPotentia')"></app-rating>
+                </div>
+            </div>
+
+            <div class="row" style="padding-left: 40px;">
+                <div class="col-md-4 terrae">
+                    <h6>Terrae Resistentia</h6>
+                    <app-rating [rating]="this.grimForm.controls.terraeResistentia.value" (ratingUpdated)="onRatingChanged($event, 'terraeResistentia')"></app-rating>
+                </div>
+
+                <div class="col-md-4 offset-md-4 aria">
+                    <h6>Aria Literatus</h6>
+                    <app-rating [rating]="this.grimForm.controls.ariaLiteratus.value" (ratingUpdated)="onRatingChanged($event, 'ariaLiteratus')"></app-rating>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="col-12 text-end">
+            <button mat-raised-button class="btn-default" type="submit">Salvar Grimorio</button>
+        </div>
+    </form>
+</div>

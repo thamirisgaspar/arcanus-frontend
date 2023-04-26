@@ -78,7 +78,6 @@ export class SkillsComponent implements OnInit {
       this.isLoading = false;
 
       if (res.status == true){
-        console.log(res)
         this.skillsForm.controls.arcanusId.setValue(res.result.arcanusid);
         this.skillsForm.controls.readness.setValue(res.result.readness);
         this.skillsForm.controls.sports.setValue(res.result.sports);
