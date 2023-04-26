@@ -48,7 +48,7 @@ export class ArcanusService {
   }
 
   getNotes(id: number) : Observable<any> {
-    return this.http.post(`${this.apiUrl}/getNotes`, {arcanusId: id});
+    return this.http.post(`${this.apiUrl}/getNotes`, {userId: id});
   }
 
   setNotes(data: any) : Observable<any> {
