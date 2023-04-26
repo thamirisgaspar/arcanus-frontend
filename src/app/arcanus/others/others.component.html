@@ -1,2 +1,75 @@
-<app-divider divider="⛧⛧⛧⛧⛧⛧"></app-divider>
-<p>others works!</p>
+<div *ngIf="isLoading"><app-loader [isLoading]="isLoading"></app-loader></div>
+<div class="container text-center"  *ngIf="!isLoading">
+    <app-divider divider="⛧⛧⛧⛧⛧⛧"></app-divider>
+
+    <form class="form-group" [formGroup]="otherForm" (ngSubmit)="otherSubmit()">
+        <div *ngIf="msgShow" class="alert alert-{{alertType}} alert-dismissible" role="alert">
+            {{msg}}
+      
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="clearMsg()"></button>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 sanity">
+                <h6>Sanidade</h6>
+                <app-rating [rating]="this.otherForm.controls.sanity.value" (ratingUpdated)="onRatingChanged($event, 'sanity')" [starCount]="20"></app-rating>
+            </div>
+
+            <div class="col-md-12 col-sm-12 mana">
+                <h6>Mana</h6>
+                <app-rating [rating]="this.otherForm.controls.mana.value" (ratingUpdated)="onRatingChanged($event, 'mana')" [starCount]="20"></app-rating>
+            </div>
+
+            <div class="col-md-12 col-sm-12 lifePoints">
+                <h6>Pontos de Vida</h6>
+                <app-rating [rating]="this.otherForm.controls.lifePoints.value" (ratingUpdated)="onRatingChanged($event, 'lifePoints')" [starCount]="20" [icon]="0"></app-rating>
+            </div>
+
+            <hr>
+
+            <div class="col-md-12 col-sm-12 vitality">
+                <h6>Vitalidade/Fraqueza</h6>
+
+                <div class="row">
+                    <div class="col-md-3 col-sm-12">
+                        <mat-checkbox formControlName="bruised" [checked]="isChecked">Escoriado</mat-checkbox>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                        <mat-checkbox formControlName="hurted" [checked]="isChecked" (change)="changed($event, 1)">Machucado -1</mat-checkbox>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                        <mat-checkbox formControlName="injured" [checked]="isChecked" (change)="changed($event, 1)">Ferido -1</mat-checkbox>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                        <mat-checkbox formControlName="seriously" [checked]="isChecked" (change)="changed($event, 2)">Ferido Gravemente -2</mat-checkbox>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                        <mat-checkbox formControlName="beaten" [checked]="isChecked" (change)="changed($event, 2)">Espancado -2</mat-checkbox>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                        <mat-checkbox formControlName="crippled" [checked]="isChecked" (change)="changed($event, 5)">Aleijado -5</mat-checkbox>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                        <mat-checkbox formControlName="incapacitated" [checked]="isChecked" (change)="changed($event, 5)">Incapacitado -5</mat-checkbox>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                        <mat-checkbox formControlName="unconscious" [checked]="isChecked">Desmaiado</mat-checkbox>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="col-12 text-end">
+                <button mat-raised-button class="btn-default" type="submit">Salvar Outros</button>
+            </div>
+        </div>
+    </form>
+</div>
