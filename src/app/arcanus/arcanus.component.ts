@@ -7,7 +7,6 @@ import { Component, Input, OnInit, ViewChild, ViewContainerRef, ViewEncapsulatio
   encapsulation: ViewEncapsulation.None
 })
 export class ArcanusComponent implements OnInit {
-  @Input() isLoading: boolean = false;
   @Input() arcanusId: Number = 0;
   @ViewChild('information', { read: ViewContainerRef }) information!: ViewContainerRef;
   @ViewChild('skills', { read: ViewContainerRef }) skills!: ViewContainerRef;

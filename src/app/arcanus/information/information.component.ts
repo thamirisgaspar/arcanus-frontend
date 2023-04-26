@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { DividerComponent } from 'src/app/commons/divider/divider.component';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ArcanusService } from 'src/app/services/arcanus.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoaderComponent } from 'src/app/commons/loader/loader.component';
-import { DividerComponent } from 'src/app/commons/divider/divider.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { RatingComponent } from 'src/app/commons/rating/rating.component';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ArcanusService } from 'src/app/services/arcanus.service';
+import { CommonModule } from '@angular/common';
 import { ArcanusComponent } from '../arcanus.component';
 
 @Component({
@@ -17,11 +17,11 @@ import { ArcanusComponent } from '../arcanus.component';
   styleUrls: ['./information.component.css'],
   standalone: true,
   imports: [
+    DividerComponent,
     CommonModule,
-    FormsModule,
+    FormsModule, 
     ReactiveFormsModule,
     LoaderComponent,
-    DividerComponent,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -29,6 +29,7 @@ import { ArcanusComponent } from '../arcanus.component';
   ]
 })
 export class InformationComponent implements OnInit {
+  isLoading = false;
   msgShow = false;
   alertType = '';
   msg = '';
@@ -41,10 +42,9 @@ export class InformationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.arcanus.isLoading = true;
+    this.isLoading = true;
 
     this.infoForm = this.formBuilder.group({
-      arcanusId: ['0'],
       player: [localStorage.getItem('name')],
       char: ['', Validators.required],
       class: ['', Validators.required],
@@ -63,13 +63,15 @@ export class InformationComponent implements OnInit {
     });
 
     this.infoForm.controls['player'].disable();
-
+    
     this.arcanusService.getArcanus(Number(localStorage.getItem('userid'))).subscribe((res) => {
-      if (res.status == true) {
-        this.infoForm.controls.arcanusId.setValue(res.result.arcanusid)
+      this.isLoading = false;
+
+      if (res.status == true && res.result != null) {
+        this.arcanus.arcanusId = res.result.arcanusid;
         this.infoForm.controls.char.setValue(res.result.char);
         this.infoForm.controls.class.setValue(res.result.class);
-        this.infoForm.controls.chronicle.setValue(res.result.chronicle)
+        this.infoForm.controls.chronicle.setValue(res.result.chronicle) 
         this.infoForm.controls.xp.setValue(Number(res.result.xp));
         this.infoForm.controls.background.setValue(res.result.background);
         this.infoForm.controls.streight.setValue(res.result.streight);
@@ -81,24 +83,58 @@ export class InformationComponent implements OnInit {
         this.infoForm.controls.perception.setValue(res.result.perception);
         this.infoForm.controls.intelligence.setValue(res.result.intelligence);
         this.infoForm.controls.reasoning.setValue(res.result.reasoning);
+        this.arcanus.loadForm();
       }
     });
-
-    this.arcanus.isLoading = false;
   }
 
   clearMsg() {
-    this.arcanus.isLoading = false;
+    this.isLoading = false;
     this.msgShow = false;
     this.msg = '';
     this.alertType = '';
   }
 
   onRatingChanged(rating: Number, attr: string){
-    this.infoForm.controls[attr].setValue(rating);
+    this.infoForm.controls[attr].setValue(rating);    
   }
 
   infoSubmit(){
+    this.isLoading = true;
+    
+    var data = {
+      'arcanusId': this.arcanus.arcanusId,
+      'userId': localStorage.getItem('userid'),
+      'char': this.infoForm.controls.char.value,
+      'class': this.infoForm.controls.class.value,
+      'chronicle': this.infoForm.controls.chronicle.value,
+      'xp': this.infoForm.controls.xp.value,
+      'background': this.infoForm.controls.background.value,
+      'streight': this.infoForm.controls.streight.value,
+      'dexterity': this.infoForm.controls.dexterity.value,
+      'life': this.infoForm.controls.life.value,
+      'charisma': this.infoForm.controls.charisma.value,
+      'manipulation': this.infoForm.controls.manipulation.value,
+      'apearence': this.infoForm.controls.apearence.value,
+      'perception': this.infoForm.controls.perception.value,
+      'intelligence': this.infoForm.controls.intelligence.value,
+      'reasoning': this.infoForm.controls.reasoning.value
+    };
+
+    this.arcanusService.setArcanus(data).subscribe((res) => {
+      this.isLoading = false;
+
+      if (res.status == true) {
+        this.alertType = 'info';
+        this.arcanus.loadForm();
+      } else {
+        this.alertType = 'danger';
+      }
+
+      this.msg = res.msg;
+      this.msgShow = true;
+      this.isLoading = false;
+    });
   }
 
 }
