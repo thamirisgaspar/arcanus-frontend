@@ -39,6 +39,7 @@ export class SkillsComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
+    this.arcanus.isLoading = true;
 
     this.skillsForm = this.formBuilder.group({
       arcanusId: [this.arcanus.arcanusId],
@@ -75,8 +76,6 @@ export class SkillsComponent implements OnInit {
     });
 
     this.arcanusService.getSkills(Number(localStorage.getItem('userid'))).subscribe((res) => {
-      this.isLoading = false;
-
       if (res.status == true){
         this.skillsForm.controls.arcanusId.setValue(res.result.arcanusid);
         this.skillsForm.controls.readness.setValue(res.result.readness);
@@ -112,6 +111,9 @@ export class SkillsComponent implements OnInit {
         this.skillsForm.controls.science.setValue(res.result.science);
       }
     });
+
+    this.isLoading = false;
+    this.arcanus.isLoading = false;
   }
 
   clearMsg() {
@@ -119,6 +121,7 @@ export class SkillsComponent implements OnInit {
     this.msgShow = false;
     this.msg = '';
     this.alertType = '';
+    this.arcanus.isLoading = false;
   }
 
   onRatingChanged(rating: Number, attr: string){
@@ -127,6 +130,7 @@ export class SkillsComponent implements OnInit {
 
   skillsSubmit() {
     this.isLoading = true;
+    this.arcanus.isLoading = true;
 
     this.arcanusService.setSkills(this.skillsForm.value).subscribe((res) => {
       if (res.status == true) {
@@ -138,6 +142,7 @@ export class SkillsComponent implements OnInit {
       this.msg = res.msg;
       this.msgShow = true;
       this.isLoading = false;
+      this.arcanus.isLoading = false;
     });
   }
 

@@ -38,6 +38,7 @@ export class GrimoireComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
+    this.arcanus.isLoading = true;
 
     this.grimForm = this.formBuilder.group({
       arcanusId: [this.arcanus.arcanusId],
@@ -49,8 +50,6 @@ export class GrimoireComponent implements OnInit {
     });
 
     this.arcanusService.getGrimoire(Number(localStorage.getItem('userid'))).subscribe((res) => {
-      this.isLoading = false;
-
       if (res.status == true && res.msg != 'Grimorio não encontrado') {
         this.grimForm.controls.arcanusId.setValue(res.result.arcanusid);
         this.grimForm.controls.animaMentia.setValue(res.result.animamentia);
@@ -60,6 +59,9 @@ export class GrimoireComponent implements OnInit {
         this.grimForm.controls.ariaLiteratus.setValue(res.result.arialiteratus);
       }
     });
+
+    this.isLoading = false;
+    this.arcanus.isLoading = false;
   }
 
   clearMsg() {
@@ -67,6 +69,7 @@ export class GrimoireComponent implements OnInit {
     this.msgShow = false;
     this.msg = '';
     this.alertType = '';
+    this.arcanus.isLoading = false;
   }
 
   onRatingChanged(rating: Number, attr: string){
@@ -75,10 +78,9 @@ export class GrimoireComponent implements OnInit {
 
   grimSubmit(){
     this.isLoading = true;
+    this.arcanus.isLoading = true;
 
     this.arcanusService.setGrimoire(this.grimForm.value).subscribe((res) => {
-      this.isLoading = false;
-
       if (res.status == true) {
         this.alertType = 'info';
       } else {
@@ -88,6 +90,7 @@ export class GrimoireComponent implements OnInit {
       this.msg = res.msg;
       this.msgShow = true;
       this.isLoading = false;
+      this.arcanus.isLoading = false;
     });
   }
 

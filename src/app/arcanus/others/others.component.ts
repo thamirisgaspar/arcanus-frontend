@@ -43,6 +43,7 @@ export class OthersComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
+    this.arcanus.isLoading = true;
 
     this.otherForm = this.formBuilder.group({
       arcanusId: [this.arcanus.arcanusId],
@@ -60,8 +61,6 @@ export class OthersComponent implements OnInit {
     });
 
     this.arcanusService.getOthers(Number(localStorage.getItem('userid'))).subscribe((res) => {
-      this.isLoading = false;
-
       if (res.status == true) {
         this.otherForm.controls.arcanusId.setValue(res.result.arcanusid);
         this.otherForm.controls.sanity.setValue(res.result.sanity);
@@ -77,6 +76,9 @@ export class OthersComponent implements OnInit {
         this.otherForm.controls.unconscious.setValue(res.result.unconscious);
       }
     });
+
+    this.isLoading = false;
+    this.arcanus.isLoading = false;
   }
 
   clearMsg() {
@@ -84,6 +86,7 @@ export class OthersComponent implements OnInit {
     this.msgShow = false;
     this.msg = '';
     this.alertType = '';
+    this.arcanus.isLoading = false;
   }
 
   onRatingChanged(rating: Number, attr: string){
@@ -106,11 +109,9 @@ export class OthersComponent implements OnInit {
 
   otherSubmit() {
     this.isLoading = true;
-    this.clearMsg();
+    this.arcanus.isLoading = true;
 
     this.arcanusService.setOthers(this.otherForm.value).subscribe((res) => {
-      this.isLoading = false;
-
       if (res.status == true) {        
         this.alertType = 'info';
       } else {
@@ -119,6 +120,8 @@ export class OthersComponent implements OnInit {
 
       this.msgShow = true;
       this.msg = res.msg;
+      this.isLoading = false;
+      this.arcanus.isLoading = false;
     });
   }
 

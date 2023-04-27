@@ -43,19 +43,39 @@ export class MagicaeComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
+    this.arcanus.isLoading = true;
 
     this.magicaeForm = this.formBuilder.group({
+      arcanusId: [this.arcanus.arcanusId],
       magicaes: this.formBuilder.array([
         this.formBuilder.group({
           id: [0],
-          arcanusId: [this.arcanus.arcanusId],
           magicae: [''],
           value: ['0']
         })
       ])
     });
 
+    this.arcanusService.getMagicaes(Number(localStorage.getItem('userid'))).subscribe(res => {      
+      if(res.status == true) {
+        this.removeMagicae(0);
+        this.magicaeForm.controls.arcanusId.setValue(this.arcanus.arcanusId);
+
+        for (var i = 0; i < res.result.length; i++) {
+          const control = <FormArray>this.magicaeForm.controls['magicaes'];
+          control.push(this.formBuilder.group({
+            id: [res.result[i].id],
+            magicae: [res.result[i].magicae],
+            value: [res.result[i].val]
+          }));
+
+          this.magicaeForm.controls['magicaes'].controls[i].controls['magicae'].disable();
+        }
+      }
+    });
+
     this.isLoading = false;
+    this.arcanus.isLoading = false;
   }
 
   clearMsg() {
@@ -63,6 +83,7 @@ export class MagicaeComponent implements OnInit {
     this.msgShow = false;
     this.msg = '';
     this.alertType = '';
+    this.arcanus.isLoading = false;
   }
 
   onRatingChanged(rating: Number, id: number, attr: string){
@@ -77,18 +98,33 @@ export class MagicaeComponent implements OnInit {
     const control = <FormArray>this.magicaeForm.controls['magicaes'];
     control.push(this.formBuilder.group({
       id: [0],
-      arcanusId: [this.arcanus.arcanusId],
       magicae: [''],
       value: ['0']
     }));
   }
 
+  removeMagicae(index: number) {
+    const control = <FormArray>this.magicaeForm.controls['magicaes'];
+    control.removeAt(index);
+  }
+
   magicaesSubmit() {
     if (this.magicaeForm.valid) {
-      //this.isLoading = true;
+      this.isLoading = true;
+      this.arcanus.isLoading = true;
 
       this.arcanusService.setMagicaes(this.magicaeForm.value).subscribe((res) => {
-        
+        if (res.status == true) {
+          this.alertType = 'info';
+          window.location.reload();
+        } else {
+          this.alertType = 'danger';
+        }
+
+        this.msg = res.msg;
+        this.msgShow = true;
+        this.isLoading = false;
+        this.arcanus.isLoading = false;
       });
 
     } else {

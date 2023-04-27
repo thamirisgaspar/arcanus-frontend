@@ -41,6 +41,7 @@ export class NotesComponent implements OnInit {
   
   ngOnInit(): void {
     this.isLoading = true;
+    this.arcanus.isLoading = true;
 
     this.notesForm = this.formBuilder.group({
       arcanusId: [this.arcanus.arcanusId],
@@ -48,13 +49,14 @@ export class NotesComponent implements OnInit {
     });
 
     this.arcanusService.getNotes(Number(localStorage.getItem('userid'))).subscribe((res) => {
-      this.isLoading = false;
-
       if (res.status == true) {
         this.notesForm.controls.arcanusId.setValue(res.result.arcanusid);
         this.notesForm.controls.notes.setValue(res.result.notes);
       }
     });
+
+    this.isLoading = false;
+    this.arcanus.isLoading = false;
   }
 
   clearMsg() {
@@ -62,14 +64,14 @@ export class NotesComponent implements OnInit {
     this.msgShow = false;
     this.msg = '';
     this.alertType = '';
+    this.arcanus.isLoading = false;
   }
 
   notesSubmit(){
     this.isLoading = true;
+    this.arcanus.isLoading = true;
 
     this.arcanusService.setNotes(this.notesForm.value).subscribe((res) => {
-      this.isLoading = false;
-
       if (res.status == true) {
         this.alertType = 'info';
       } else {
@@ -79,6 +81,7 @@ export class NotesComponent implements OnInit {
       this.msg = res.msg;
       this.msgShow = true;
       this.isLoading = false;
+      this.arcanus.isLoading = false;
     });
   }
 

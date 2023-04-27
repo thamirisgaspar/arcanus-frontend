@@ -1,6 +1,8 @@
 <div class="container">
     <app-logout></app-logout>
 
+    <div *ngIf="isLoading"><app-loader [isLoading]="isLoading"></app-loader></div>
+
     <div class="row">
         <ng-container #information></ng-container>
     </div>

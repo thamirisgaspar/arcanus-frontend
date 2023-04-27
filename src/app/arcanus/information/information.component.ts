@@ -43,6 +43,7 @@ export class InformationComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
+    this.arcanus.isLoading = true;
 
     this.infoForm = this.formBuilder.group({
       player: [localStorage.getItem('name')],
@@ -65,8 +66,6 @@ export class InformationComponent implements OnInit {
     this.infoForm.controls['player'].disable();
     
     this.arcanusService.getArcanus(Number(localStorage.getItem('userid'))).subscribe((res) => {
-      this.isLoading = false;
-
       if (res.status == true && res.result != null) {
         this.arcanus.arcanusId = res.result.id;
         this.infoForm.controls.char.setValue(res.result.char);
@@ -86,6 +85,9 @@ export class InformationComponent implements OnInit {
         this.arcanus.loadForm();
       }
     });
+
+    this.isLoading = false;
+    this.arcanus.isLoading = false;
   }
 
   clearMsg() {
@@ -93,6 +95,7 @@ export class InformationComponent implements OnInit {
     this.msgShow = false;
     this.msg = '';
     this.alertType = '';
+    this.arcanus.isLoading = false;
   }
 
   onRatingChanged(rating: Number, attr: string){
@@ -101,6 +104,7 @@ export class InformationComponent implements OnInit {
 
   infoSubmit(){
     this.isLoading = true;
+    this.arcanus.isLoading = true;
     
     var data = {
       'arcanusId': this.arcanus.arcanusId,
@@ -122,8 +126,6 @@ export class InformationComponent implements OnInit {
     };
 
     this.arcanusService.setArcanus(data).subscribe((res) => {
-      this.isLoading = false;
-
       if (res.status == true) {
         this.alertType = 'info';
         this.arcanus.loadForm();
@@ -134,6 +136,7 @@ export class InformationComponent implements OnInit {
       this.msg = res.msg;
       this.msgShow = true;
       this.isLoading = false;
+      this.arcanus.isLoading = false;
     });
   }
 
