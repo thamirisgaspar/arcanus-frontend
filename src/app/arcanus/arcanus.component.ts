@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-arcanus',
@@ -16,8 +17,17 @@ export class ArcanusComponent implements OnInit {
   @ViewChild('grimoire', { read: ViewContainerRef}) grimoire!: ViewContainerRef;
   @ViewChild('notes', { read: ViewContainerRef}) notes!: ViewContainerRef;
 
+  constructor(
+    private router: Router
+  ) { }
+
   ngOnInit(): void {
     window.scrollTo(0, 0);
+
+    if (localStorage.getItem('token') == null || localStorage.length == 0){
+      this.router.navigate(['/users']);
+    }
+
     this.showInformation();
   }
 
