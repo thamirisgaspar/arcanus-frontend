@@ -24,6 +24,6 @@ export class LogoutComponent {
     localStorage.removeItem('name');
     localStorage.removeItem('id');
 
-    this.router.navigate(['/users'], {queryParams: {'login' : 'active true'}});
+    this.router.navigate(['/users']);
   }
 }

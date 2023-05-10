@@ -80,5 +80,5 @@ export class ArcanusComponent implements OnInit {
       this.notes.createComponent(component);
     });
   }
-
+  
 }
