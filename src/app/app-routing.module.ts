@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'forgotPassword', loadChildren: () => import('./users/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) }, 
   { path: 'resetPassword', loadChildren: () => import('./users/reset-password/reset-password.module').then(m => m.ResetPasswordModule) },
   { path: 'arcanus', loadChildren: () => import('./arcanus/arcanus.module').then(m => m.ArcanusModule) },
+  { path: '**', redirectTo: '/users'}
 ];
 
 @NgModule({
